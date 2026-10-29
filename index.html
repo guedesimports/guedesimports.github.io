@@ -86,4 +86,102 @@ h1 .out { color: transparent; -webkit-text-stroke: 2px var(--fg); }
 
 /* faixa */
 .strip { border-block: 1px solid var(--line); overflow: hidden; background: var(--panel); }
-.strip p { margin: 0; padding-block
+.strip p { margin: 0; padding-block: 14px; font-family: var(--font-display); font-weight: 800; font-size: 1.15rem; letter-spacing: .14em; text-transform: uppercase; white-space: nowrap; overflow-x: auto; }
+.strip b { color: var(--accent); font-weight: 800; padding-inline: .6em; }
+
+/* blocos */
+.blocks { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 0; margin-block: clamp(32px, 6vw, 64px); border: 1px solid var(--line); }
+.block { padding: 26px 22px 30px; border-right: 1px solid var(--line); min-width: 0; }
+.block:last-child { border-right: 0; }
+@media (max-width: 720px) { .block { border-right: 0; border-bottom: 1px solid var(--line); } .block:last-child { border-bottom: 0; } }
+.block h2 { font-family: var(--font-display); font-weight: 800; font-size: 1.9rem; line-height: 1; letter-spacing: .02em; text-transform: uppercase; margin: 0 0 10px; }
+.block p { margin: 0; color: var(--muted); }
+
+/* contato */
+.contact { background: var(--fg); color: var(--bg); padding: clamp(28px, 6vw, 56px) clamp(20px, 5vw, 48px); margin-bottom: 40px; display: grid; gap: 22px; }
+.contact h2 { font-family: var(--font-display); font-weight: 900; font-size: clamp(2.4rem, 9vw, 4.6rem); line-height: .9; text-transform: uppercase; margin: 0; text-wrap: balance; }
+.contact p { margin: 0; max-width: 32rem; opacity: .85; }
+.contact .btn.wa { border-color: var(--wa); }
+.contact .btn.ghost { color: var(--bg); border-color: var(--bg); }
+.num { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; font-size: .9rem; }
+.num code { font: 700 1rem var(--font-body); letter-spacing: .04em; user-select: all; }
+.copy { font: 500 .8125rem var(--font-body); background: transparent; color: var(--bg); border: 1px solid currentColor; padding: 6px 12px; cursor: pointer; }
+
+footer { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 20px; padding-block: 0 36px; font-size: .8125rem; color: var(--muted); }
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <div class="logo">Guedes<span>.</span>Imports</div>
+    <a class="ig" href="https://www.instagram.com/guedesimports___/">@guedesimports___</a>
+  </header>
+
+  <section class="cover">
+    <span class="tag">Abertura em 2027</span>
+    <h1>Estilo <span class="out">casual</span> de marca</h1>
+    <p class="lead">Roupa masculina pra quem se veste com atitude no dia a dia. A loja está sendo montada e as primeiras peças chegam em breve.</p>
+    <div class="cta-row">
+      <a class="btn wa" href="https://wa.me/5516994049604?text=Oi!%20Quero%20ser%20avisado%20quando%20a%20Guedes%20Imports%20abrir.">Quero ser avisado</a>
+      <a class="btn ghost" href="https://www.instagram.com/guedesimports___/">Seguir no Instagram</a>
+    </div>
+  </section>
+</div>
+
+<div class="strip"><div class="wrap"><p>Roupa masculina <b>/</b> Visual casual <b>/</b> Atendimento no WhatsApp <b>/</b> Guedes Imports</p></div></div>
+
+<div class="wrap">
+  <section class="blocks" aria-label="Sobre a loja">
+    <article class="block">
+      <h2>O estilo</h2>
+      <p>Peças casuais com cara de marca, pensadas pro público jovem que gosta de se vestir bem sem complicação.</p>
+    </article>
+    <article class="block">
+      <h2>As fotos</h2>
+      <p>Estamos montando um estúdio próprio pra fotografar cada peça. O catálogo estreia no Instagram.</p>
+    </article>
+    <article class="block">
+      <h2>O pedido</h2>
+      <p>Você escolhe a peça e fecha direto pelo WhatsApp, falando com a loja.</p>
+    </article>
+  </section>
+
+  <section class="contact" id="contato">
+    <h2>Fala com a gente</h2>
+    <p>Chame no WhatsApp pra entrar na lista de aviso. Quem pedir primeiro fica sabendo da abertura antes.</p>
+    <div class="cta-row" style="margin:0">
+      <a class="btn wa" href="https://wa.me/5516994049604?text=Oi!%20Quero%20ser%20avisado%20quando%20a%20Guedes%20Imports%20abrir.">Chamar no WhatsApp</a>
+      <a class="btn ghost" href="https://www.instagram.com/guedesimports___/">Instagram</a>
+    </div>
+    <div class="num">
+      <span>WhatsApp:</span> <code id="zap">(16) 99404-9604</code>
+      <button class="copy" id="copy" type="button">Copiar número</button>
+    </div>
+  </section>
+
+  <footer>
+    <span>Guedes Imports</span>
+    <span>Em breve, a vitrine completa</span>
+  </footer>
+</div>
+
+<script>
+(function () {
+  var btn = document.getElementById("copy");
+  var num = document.getElementById("zap");
+  btn.addEventListener("click", function () {
+    var done = function () { btn.textContent = "Copiado"; setTimeout(function () { btn.textContent = "Copiar número"; }, 1800); };
+    try {
+      navigator.clipboard.writeText("16994049604").then(done, function () {
+        var r = document.createRange(); r.selectNodeContents(num);
+        var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+      });
+    } catch (e) {
+      var r = document.createRange(); r.selectNodeContents(num);
+      var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+    }
+  });
+})();
+</script>
+
+</body>
+</html>
