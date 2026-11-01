@@ -563,7 +563,7 @@ footer .logo{color:#fff;display:inline-block;margin-bottom:8px}
       card.querySelector('.buy').addEventListener('click', function () {
         var size = select ? select.value : '';
         if (select && !size) { select.focus(); return; }
-        var msg = 'Olá! Quero comprar: ' + name + (size ? ', tamanho ' + size : '') + '. Podemos combinar a forma de pagamento?';
+        var msg = 'Opa! Quero comprar: ' + name + (size ? ', tamanho ' + size : '') + '.';
         window.open('https://wa.me/' + NUM + '?text=' + encodeURIComponent(msg), '_blank', 'noopener');
       });
     });
